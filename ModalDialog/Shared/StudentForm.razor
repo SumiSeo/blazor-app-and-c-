@@ -1,0 +1,55 @@
+﻿<h3>Component1</h3>
+<div class="student__container">
+    <div class="student__column">
+        <label>Student name</label>
+        <input @bind="Name" />
+    </div>
+    <div class="student__column">
+        <label>Student age</label>
+        <input @bind="Age" />
+    </div>
+    <div class="student__column">
+        <label>Student School</label>
+        <input @bind="School" />
+    </div>
+    <button @onclick="AddStudent">Submit</button>
+</div>
+
+<ol>
+    @foreach (var student in Students)
+    {
+        <li><div>
+    @student.StudentName
+    @student.StudentAge
+    @student.StudentSchool
+</div></li>
+    }
+</ol>
+
+@code {
+    private string Name  { get; set; }
+    private string Age    { get; set; }
+    private string School { get; set; }
+
+    private List<Student> Students = new List<Student>();
+
+
+    public void AddStudent(MouseEventArgs e)
+    {
+        Console.WriteLine("test");
+        if (!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Age) && !string.IsNullOrEmpty(School))
+        {
+            Student newStudent = new Student(Name, Age, School);
+            Console.WriteLine(newStudent);
+            Students.Add(newStudent);
+            Name = "";
+            Age = "";
+            School = "";
+
+        }
+
+    }
+
+    }
+    }
+
